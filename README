@@ -1,5 +1,15 @@
 
-currently only tested on a single CentOS 5.x box.
+currently only tested on a single CentOS 5.x box. Assumes redhat package filesystem paths.
+
+you can pick and mix, by linking the individual scripts in step 3, or you can install them all in that step.
+
+Alternatively there is an install script which will try to link the scripts matching services configured to run at init level 3 as detected by chkconfig.
+
+# chmod +x /usr/share/monit-shared/install.sh
+# /usr/share/monit-shared/install.sh
+
+added chef-server
+Control file syntax OK
 
 
 1.
