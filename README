@@ -1,0 +1,40 @@
+
+currently only tested on a single CentOS 5.x box.
+
+
+1.
+clone or export the project into your server;
+
+sudo git clone git://github.com/tolland/monit-shared.git /usr/share/monit-shared
+
+
+2.
+review the scripts for anything interesting
+
+$ ls -1 /usr/share/monit-shared/monit.d
+chef-client.conf
+chef-server.conf
+openldap-server.conf
+
+
+3.
+Link the ones you want to monit;
+
+ln -s /usr/share/monit/monit.d/chef-client.conf /etc/monit.d/chef-client.conf
+
+
+4.
+check the config and restart monit;
+
+# monit -t 
+Control file syntax OK
+
+
+5.
+restart monit.
+
+# service monit restart
+Stopping monit: 
+                                                           [  OK  ]
+Starting monit: Starting monit daemon with http interface at [*:2812]
+                                                           [  OK  ]
