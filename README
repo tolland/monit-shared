@@ -18,10 +18,11 @@ openldap-server.conf
 
 
 3.
-Link the ones you want to monit;
+either install all the scripts, and get deluged with alerts;
+sudo ln -s -t /etc/monit.d/ /usr/share/monit-shared/monit.d/* 
 
-ln -s /usr/share/monit/monit.d/chef-client.conf /etc/monit.d/chef-client.conf
-
+Or just link the ones you want to monit;
+sudo ln -s /usr/share/monit/monit.d/chef-client.conf /etc/monit.d/chef-client.conf
 
 4.
 check the config and restart monit;
