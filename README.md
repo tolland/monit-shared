@@ -1,8 +1,11 @@
 
 # monit-shared
 
+monit-shared are some drop in scripts for monit.
+
 monit is a free, open source process supervision tool for Unix and Linux.
 <http://mmonit.com/monit/documentation/>
+
 
 ## what is it?
 
