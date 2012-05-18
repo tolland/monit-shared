@@ -40,7 +40,8 @@ do
     fi    
 done
 
-#ln -s ${monit_shared}/monit.d/filesystem.conf /etc/monit.d/
+[ -h /etc/monit.d/filesystem.conf ] || \
+ln -s ${monit_shared}/monit.d/filesystem.conf /etc/monit.d/
 
 monit -t
 
