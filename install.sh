@@ -42,8 +42,8 @@ done
 
 # have chef handle the filesystem checks
 
-#[ -h /etc/monit.d/filesystem.conf ] || \
-#ln -s ${monit_shared}/monit.d/filesystem.conf /etc/monit.d/
+[ -f /etc/monit.d/filesystem.conf ] || \
+cp ${monit_shared}/monit.d/filesystem.conf /etc/monit.d/
 
 # handle any cases where the service has been removed;
 # so want to break any links between /etc/monit.d and /usr/shared/monit-shared
