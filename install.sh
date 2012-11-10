@@ -40,8 +40,37 @@ do
     fi    
 done
 
-[ -h /etc/monit.d/filesystem.conf ] || \
-ln -s ${monit_shared}/monit.d/filesystem.conf /etc/monit.d/
+# have chef handle the filesystem checks
+
+#[ -h /etc/monit.d/filesystem.conf ] || \
+#ln -s ${monit_shared}/monit.d/filesystem.conf /etc/monit.d/
+
+# handle any cases where the service has been removed;
+# so want to break any links between /etc/monit.d and /usr/shared/monit-shared
+# which were created by monit-shared
+
+# @todo this is all nasty nasty
+
+rtrim() {
+    local var=$1
+    var="${var%"${var##*[![:space:]]}"}"   # remove trailing whitespace characters
+    echo -n "$var"
+}
+
+for foo in `find /etc/monit.d/ -type l -print0 | xargs -0 echo`
+do
+
+svc=$(basename `basename $foo` .conf)
+
+    if [ ! -x /etc/init.d/$svc -a -L /etc/monit.d/$svc.conf ]; then 
+#        if [! -x /etc/init.d/$(basename `basename $foo` .conf) ]; then
+#        find $foo -type l -exec ls -lh {} \; 
+        rm -f /etc/monit.d/$svc.conf
+#        fi           
+      fi
+done
 
 monit -t
+
+
 
