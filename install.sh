@@ -30,13 +30,23 @@ do
       fi
       
     #are we always in init levell 3?, 
-    if [ "`chkconfig --list ${foo} 2>/dev/null | awk '{print $5}' | awk -F":" '{print $2}'`" = "on" ]
+
+    state="`chkconfig --list ${foo} 2>/dev/null | awk '{print $5}' | awk -F":" '{print $2}'`" 
+    if [ "$state" = "on" ]
     then
       [ $debug ] && echo "trying $foo"
         [ -f ${monit_shared}/monit.d/${foo}.conf ] && \
         [ ! -L ${monit_dir}/${foo}.conf ] && \
         ln -s ${monit_shared}/monit.d/${foo}.conf /etc/monit.d/        && \
         echo "added $foo"
+    fi    
+
+    if [ "$state" = "off" ]
+    then
+      [ $debug ] && echo "removing $foo"
+        [ -L /etc/monit.d/${foo}.conf ] && \
+		rm -f /etc/monit.d/${foo}.conf        && \
+        echo "removed $foo"
     fi    
 done
 
