@@ -1,4 +1,7 @@
 
+> This repo is pretty old now, and I've not used it in production for many years. Typically I would now use
+> ansible to build the monit config files, but the idea can be applied if its adjusted to use systemd etc.
+
 # monit-shared
 
 monit-shared are some drop in scripts for monit.
